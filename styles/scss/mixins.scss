@@ -1,0 +1,9 @@
+@mixin content-area($area, $bg-color, $color: $font-color-dark, $weight: 500) {
+    grid-area: $area;
+    background: $bg-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $weight;
+    color: $color;
+}

@@ -1,0 +1,364 @@
+@use 'variables';
+@use 'mixins';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: variables.$text-dark;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// Header
+.header {
+    background: variables.$white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 20px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: variables.$primary-color;
+
+        i {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+    }
+
+    .nav {
+        display: flex;
+        gap: 2rem;
+
+        .nav-link {
+            text-decoration: none;
+            color: variables.$text-dark;
+            font-weight: 500;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: variables.$primary-color;
+                text-decoration: underline variables.$primary-color;
+                text-underline-offset: 10px;
+            }
+        }
+    }
+}
+
+.hero {
+    height: 400px;
+    background: linear-gradient(lightgreen, darkgreen),
+        url('https://images.unsplash.com/photo-1549824796-3913d6dc2f50?w=1200&h=400&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .search-container {
+        display: flex;
+        max-width: 500px;
+        margin: 0 auto;
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+            outline: none;
+
+            &::placeholder {
+                color: variables.$text-muted;
+            }
+        }
+
+        .search-btn {
+            background: variables.$primary-color;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 0 5px 5px 0;
+            color: variables.$white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: darken(variables.$primary-color, 10%);
+            }
+        }
+    }
+}
+
+.main {
+    padding: 3rem 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h2 {
+        color: variables.$primary-color;
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+
+    .page-info {
+        color: variables.$text-light;
+        font-size: 0.9rem;
+    }
+
+    span {
+        color: variables.$primary-color;
+        font-weight: 600;
+    }
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-areas:
+        "header header header header"
+        "nav upper-left upper-center upper-right"
+        "nav middle middle middle"
+        "nav lower lower lower"
+        "footer footer footer footer";
+    grid-template-columns: 200px 1fr 1fr 1fr;
+    grid-template-rows: 70px 200px 130px 130px 60px;
+    gap: 15px;
+    background: variables.$background-color-light;
+
+    // Include mixin for each content area
+    .header-area {
+        @include content-area("header", variables.$bg-header-footer, variables.$text-dark, bold);
+        font-size: 1.7rem;
+        letter-spacing: 2px;
+    }
+
+    .nav-area {
+        @include content-area("nav", variables.$bg-nav, variables.$text-dark, bold);
+        font-size: 1.2rem;
+    }
+
+    .upper-content-left {
+        @include content-area("upper-left", variables.$bg-upper-content-left, variables.$white);
+    }
+
+    .upper-content-center {
+        @include content-area("upper-center", variables.$bg-upper-content-center, variables.$white);
+    }
+
+    .upper-content-right {
+        @include content-area("upper-right", variables.$bg-upper-content-right);
+    }
+
+    .middle-content {
+        @include content-area("middle", variables.$bg-middle-content, variables.$white);
+    }
+
+    .lower-content {
+        @include content-area("lower", variables.$bg-lower-content, variables.$white);
+    }
+
+    .footer-area {
+        @include content-area("footer", variables.$bg-header-footer, variables.$text-dark, bold);
+        font-size: 1.2rem;
+        position: sticky;
+        bottom: 0;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+
+    .pagination-btn {
+        background: variables.$primary-color;
+        color: variables.$white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.3s ease;
+
+        &:hover {
+            background: darken(variables.$primary-color, 10%);
+        }
+    }
+
+    .pagination-numbers {
+        display: flex;
+        gap: 0.5rem;
+
+        .pagination-number {
+            background: transparent;
+            border: 2px solid variables.$border-color;
+            color: variables.$text-dark;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: variables.$primary-color;
+                color: variables.$primary-color;
+            }
+
+            &.active {
+                background: variables.$primary-color;
+                border-color: variables.$primary-color;
+                color: variables.$white;
+            }
+        }
+    }
+}
+
+// Footer
+.footer {
+    background: variables.$background-light;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: row;
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 3rem;
+        margin-bottom: 2rem;
+        max-width: 750px;
+    }
+
+    .footer-section {
+        h3 {
+            color: variables.$primary-color;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        p {
+            color: variables.$text-light;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        // First section takes more space
+        &:first-child {
+            flex: 2;
+        }
+
+        // Second section takes less space
+        &:last-child {
+            flex: 1;
+        }
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-end;
+
+            a {
+                color: variables.$text-light;
+                text-decoration: none;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: variables.$primary-color;
+                }
+            }
+        }
+    }
+
+    // Social Media Icons
+    .social-icons {
+        display: flex;
+        gap: 0.5rem;
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: transparent;
+            border: 2px solid variables.$border-color;
+            color: variables.$white;
+            border-radius: 10%;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: variables.$primary-color;
+                color: variables.$primary-color;
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    // Footer Bottom Section
+    .footer-bottom {
+        border-top: 1px solid variables.$border-color;
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .footer-copyright {
+            p {
+                color: variables.$text-light;
+                font-size: 0.9rem;
+                margin: 0;
+            }
+        }
+
+        .footer-credit {
+            p {
+                color: variables.$text-light;
+                font-size: 0.9rem;
+                margin: 0;
+            }
+
+            span {
+                color: variables.$primary-color;
+                font-weight: 600;
+            }
+        }
+    }
+}
