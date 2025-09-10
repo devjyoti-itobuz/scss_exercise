@@ -286,6 +286,7 @@ body {
             justify-content: space-between;
             gap: 0.5rem;
             align-items: flex-end;
+            white-space: nowrap;
 
             a {
                 color: variables.$text-light;

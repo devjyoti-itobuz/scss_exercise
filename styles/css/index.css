@@ -289,6 +289,7 @@ body {
   justify-content: space-between;
   gap: 0.5rem;
   align-items: flex-end;
+  white-space: nowrap;
 }
 .footer .footer-links .footer-column a {
   color: #666;
