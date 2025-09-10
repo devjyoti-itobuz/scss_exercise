@@ -1,6 +1,6 @@
 @use 'variables';
+// Variables
 @use 'mixins';
-
 * {
     margin: 0;
     padding: 0;
@@ -150,42 +150,41 @@ body {
     grid-template-columns: 200px 1fr 1fr 1fr;
     grid-template-rows: 70px 200px 130px 130px 60px;
     gap: 15px;
-    background: variables.$background-color-light;
+    background: variables.$background-light;
 
-    // Include mixin for each content area
     .header-area {
-        @include content-area("header", variables.$bg-header-footer, variables.$text-dark, bold);
+        @include mixins.center-text(header, variables.$bg-header-footer);
         font-size: 1.7rem;
         letter-spacing: 2px;
     }
 
     .nav-area {
-        @include content-area("nav", variables.$bg-nav, variables.$text-dark, bold);
+        @include mixins.center-text(nav, variables.$bg-nav);
         font-size: 1.2rem;
     }
 
     .upper-content-left {
-        @include content-area("upper-left", variables.$bg-upper-content-left, variables.$white);
+        @include mixins.center-text(upper-left, variables.$bg-upper-content-left, variables.$white);
     }
 
     .upper-content-center {
-        @include content-area("upper-center", variables.$bg-upper-content-center, variables.$white);
+        @include mixins.center-text(upper-center, variables.$bg-upper-content-center, variables.$white);
     }
 
     .upper-content-right {
-        @include content-area("upper-right", variables.$bg-upper-content-right);
+        @include mixins.center-text(upper-right, variables.$bg-upper-content-right);
     }
 
     .middle-content {
-        @include content-area("middle", variables.$bg-middle-content, variables.$white);
+        @include mixins.center-text(middle, variables.$bg-middle-content, variables.$white);
     }
 
     .lower-content {
-        @include content-area("lower", variables.$bg-lower-content, variables.$white);
+        @include mixins.center-text(lower, variables.$bg-lower-content, variables.$white);
     }
 
     .footer-area {
-        @include content-area("footer", variables.$bg-header-footer, variables.$text-dark, bold);
+        @include mixins.center-text(footer, variables.$bg-header-footer);
         font-size: 1.2rem;
         position: sticky;
         bottom: 0;

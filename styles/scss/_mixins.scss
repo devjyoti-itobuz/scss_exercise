@@ -1,4 +1,6 @@
-@mixin content-area($area, $bg-color, $color: $font-color-dark, $weight: 500) {
+@use 'variables';
+
+@mixin center-text($area, $bg-color, $color: #000, $weight: 500) {
     grid-area: $area;
     background: $bg-color;
     display: flex;
