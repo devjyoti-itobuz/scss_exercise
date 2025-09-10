@@ -10,7 +10,8 @@ body {
   color: #333;
 }
 
-.body-container, .header-container, .footer-container {
+.body-container,
+.footer-container {
   padding: 0 50px;
 }
 
@@ -25,7 +26,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 25px;
+  padding: 1rem 50px;
 }
 .header .logo {
   display: flex;
